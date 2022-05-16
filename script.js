@@ -1,12 +1,12 @@
 'use strict';
 
 const button = document.querySelectorAll('.product-button');
-console.log(button);
-
-button.forEach(addToCart);
+let cartItemNumber = document.querySelector('.cart-item-number');
 
 function addToCart(button) {
   button.addEventListener('click', (event) => {
-    button.style.backgroundColor = '#a5b4a4';
+    cartItemNumber.textContent++;
   });
 }
+
+button.forEach(addToCart);
