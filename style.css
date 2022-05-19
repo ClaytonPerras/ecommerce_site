@@ -105,6 +105,10 @@ a {
   border-radius: 20px;
 }
 
+.bike-4-img {
+  object-position: 0 90%;
+}
+
 .product-title {
   font-size: 20px;
   text-align: center;
@@ -134,7 +138,7 @@ a {
   width: 80%;
 }
 
-#item-quantity-1 {
+.item-quantity {
   width: 100px;
   height: auto;
   border-radius: 20px;
