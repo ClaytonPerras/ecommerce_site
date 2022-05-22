@@ -18,6 +18,9 @@ let itemFiveQuantity = document.getElementById('item-quantity-5');
 let itemSixQuantity = document.getElementById('item-quantity-6');
 // Used to update quantityWanted object property for each bike product
 let quantityWantedValue = 0;
+// Get cart element and productions section
+const cart = document.querySelector('.cart-container');
+const products = document.querySelector('.products');
 
 let bikes = [
   {
@@ -52,7 +55,7 @@ let bikes = [
   },
 ];
 
-// function to fill bike data from bike objects
+// fill bike data from bike objects
 function loadProductData() {
   productTitle.forEach((element, index) => {
     element.textContent = bikes[index].name;
@@ -135,6 +138,17 @@ function addToCart(button) {
 }
 
 button.forEach(addToCart);
+
+// Added functionality for remove products section
+// Need to add functionality for when product section is removed to add shopping cart items and price calculations
+cart.addEventListener('click', (event) => {
+  if (!products.classList.contains('active-cart')) {
+    products.classList.add('active-cart');
+  } else if (products.classList.contains('active-cart')) {
+    products.classList.remove('active-cart');
+  }
+});
+
 // function delete from cart
 // function add taxes
 // add function for calculating cart total based on each price and quantity of bike
