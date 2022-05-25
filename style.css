@@ -51,7 +51,7 @@ a {
 .link {
   font-size: 18px;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .link:hover {
@@ -102,7 +102,7 @@ a {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .bike-4-img {
@@ -124,7 +124,7 @@ a {
   padding: 10px 20px;
   background-color: var(--primary);
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   font-weight: 400;
   color: white;
   font-size: 16px;
@@ -141,7 +141,7 @@ a {
 .item-quantity {
   width: 100px;
   height: auto;
-  border-radius: 20px;
+  border-radius: 30px;
   border: 1px solid black;
   text-align: center;
 }
@@ -160,4 +160,75 @@ input[type='number']::-webkit-outer-spin-button {
 
 .non-active-cart {
   display: block;
+}
+
+.cart-products-active {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img-container {
+  width: 50%;
+}
+
+.product-img-cart {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.product-details-container {
+  width: 40%;
+  margin-top: auto;
+  margin-bottom: 20%;
+  margin-left: 3rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+.product-title-cart {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.product-price-cart {
+  font-weight: 400;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.product-cart-container {
+  margin-bottom: 30px;
+}
+
+.quantity-wanted-cart {
+  margin-bottom: 1rem;
+}
+
+.product-details-container .cart-button {
+  width: 200px;
+}
+
+.product-details-container select {
+  margin-bottom: 1rem;
+}
+
+.cart-button {
+  text-align: center;
+  padding: 10px 20px;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 30px;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-items-inactive {
+  display: none;
 }

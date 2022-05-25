@@ -2,13 +2,15 @@
 
 // Grab add to cart button
 const button = document.querySelectorAll('.product-button');
+
 // Grab product info to be loaded in loadProductData
 let productTitle = document.querySelectorAll('.product-title');
 let productPrice = document.querySelectorAll('.product-price');
+
 // Grab data for cart calculations
 let cartItemNumber = document.querySelector('.cart-item-number');
 let numItemsInCart = 0;
-// insert cart total here -------------------------------
+
 // Select element values from each bike product
 let itemOneQuantity = document.getElementById('item-quantity-1');
 let itemTwoQuantity = document.getElementById('item-quantity-2');
@@ -16,13 +18,17 @@ let itemThreeQuantity = document.getElementById('item-quantity-3');
 let itemFourQuantity = document.getElementById('item-quantity-4');
 let itemFiveQuantity = document.getElementById('item-quantity-5');
 let itemSixQuantity = document.getElementById('item-quantity-6');
+
 // Used to update quantityWanted object property for each bike product
 let quantityWantedValue = 0;
-// Get cart element and productions section
-const cart = document.querySelector('.cart-container');
-const products = document.querySelector('.products');
 
-let bikes = [
+// Get cart element and productions section
+const cartIcon = document.querySelector('.cart-container');
+const products = document.querySelector('.products');
+let cartProductsContainer = document.querySelector('.cart-section');
+
+// Need to hide so that users cannot change price to 0;
+const bikes = [
   {
     name: 'Bike 1',
     price: '129.99',
@@ -129,26 +135,45 @@ function addToCart(button) {
       // Update quantity wanted on Bike 6 object
       bikes[5].quantityWanted += Number(quantityWantedValue);
     }
-
-    bikes.forEach((element) => {
-      console.log(element.name);
-      console.log(element.quantityWanted);
-    });
   });
 }
 
 button.forEach(addToCart);
 
-// Added functionality for remove products section
-// Need to add functionality for when product section is removed to add shopping cart items and price calculations
-cart.addEventListener('click', (event) => {
+cartIcon.addEventListener('click', (event) => {
+  // Remove or add cart section based on selection
   if (!products.classList.contains('active-cart')) {
+    fillCartData();
+    // Move functionality into separate function that displays only data filled if quantityWanted > 0
     products.classList.add('active-cart');
+    cartProductsContainer.classList.remove('cart-items-inactive');
+    cartProductsContainer.classList.add('cart-products-active');
   } else if (products.classList.contains('active-cart')) {
+    fillCartData();
     products.classList.remove('active-cart');
+    cartProductsContainer.classList.remove('cart-products-active');
+    cartProductsContainer.classList.add('cart-items-inactive');
   }
 });
 
-// function delete from cart
-// function add taxes
-// add function for calculating cart total based on each price and quantity of bike
+// function to fill cart data based on bike objects
+// grab cart data, generate elements for cart as long as quantity wanted > 0
+function fillCartData() {
+  bikes.forEach((bike, index) => {
+    console.log(bike.name);
+    console.log(bike.quantityWanted);
+    if (bike.quantityWanted > 0) {
+      // Generate DOM element here and add classes
+      const containerMD = document.createElement('div');
+      containerMD.after('cart-section');
+      containerMD.classList.add('container-md', 'product-cart-container');
+      const productImgContainer = document.createElement('div');
+      productImgContainer.after('container-md');
+      productImgContainer.classList.add('product-img-container');
+      const productImgCart = document.createElement('img');
+      productImgCart.after('product-img-container');
+      productImgCart.classList.add('product-img-cart');
+      productImgCart.src = '/assets/bike-1.jpg';
+    }
+  });
+}
