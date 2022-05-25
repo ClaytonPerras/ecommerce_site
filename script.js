@@ -143,37 +143,43 @@ button.forEach(addToCart);
 cartIcon.addEventListener('click', (event) => {
   // Remove or add cart section based on selection
   if (!products.classList.contains('active-cart')) {
-    fillCartData();
     // Move functionality into separate function that displays only data filled if quantityWanted > 0
     products.classList.add('active-cart');
     cartProductsContainer.classList.remove('cart-items-inactive');
     cartProductsContainer.classList.add('cart-products-active');
   } else if (products.classList.contains('active-cart')) {
-    fillCartData();
     products.classList.remove('active-cart');
     cartProductsContainer.classList.remove('cart-products-active');
     cartProductsContainer.classList.add('cart-items-inactive');
   }
+  fillCartData();
 });
 
 // function to fill cart data based on bike objects
 // grab cart data, generate elements for cart as long as quantity wanted > 0
 function fillCartData() {
   bikes.forEach((bike, index) => {
-    console.log(bike.name);
-    console.log(bike.quantityWanted);
-    if (bike.quantityWanted > 0) {
+    // Solved duplicate generation of DOM elements
+    // Need to add product details section and pull object data
+    if (bike.quantityWanted > 0 && !cartProductsContainer.hasChildNodes()) {
       // Generate DOM element here and add classes
+      console.log(bike.name);
+      console.log(bike.quantityWanted);
+      const test1 = document.createElement('h1');
+      test1.textContent = 'Generating products';
+      cartProductsContainer.appendChild(test1);
       const containerMD = document.createElement('div');
-      containerMD.after('cart-section');
+      cartProductsContainer.appendChild(containerMD);
       containerMD.classList.add('container-md', 'product-cart-container');
       const productImgContainer = document.createElement('div');
-      productImgContainer.after('container-md');
+      containerMD.appendChild(productImgContainer);
       productImgContainer.classList.add('product-img-container');
       const productImgCart = document.createElement('img');
-      productImgCart.after('product-img-container');
+      productImgContainer.appendChild(productImgCart);
       productImgCart.classList.add('product-img-cart');
       productImgCart.src = '/assets/bike-1.jpg';
     }
   });
 }
+
+fillCartData();
